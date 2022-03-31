@@ -24,7 +24,6 @@ const crearCategoria = async (req, res = response) => {
         console.log(error);
         res.status(500).json(error);
     }
-
 }
 
 const actualizarCategoria = async (req, res = response) => {
@@ -33,9 +32,8 @@ const actualizarCategoria = async (req, res = response) => {
     const nombre = req.body.nombre.toUpperCase();
 
     const categoria = await Categoria.findByIdAndUpdate(id, {nombre}, {new : true});
-
-    res.json(categoria);
-
+  
+    return res.json(categoria);
 }
 
 const borrarCategoria = async (req, res = response) => {

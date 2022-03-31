@@ -67,7 +67,7 @@ const obtenerProducto = async (req, res = response) => {
 
     try {
         const producto = await Producto.findById(id)
-        .populate('Categoria', 'nombre');
+        .populate('categoria', 'nombre');
         return res.status(200).json(producto);
 
     } catch (error) {

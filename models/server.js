@@ -17,7 +17,7 @@ class Server{
         this.productoPath        = '/api/producto';
         this.ordenPath           = '/api/orden';
         this.uploadProductoPath  = '/api/upload';
-
+        this.checkoutPath        = '/api/checkout'; 
 
         //Conectar a base de datos
         this.conectarDB();
@@ -59,6 +59,7 @@ class Server{
         this.app.use(this.ordenPath, require('../routes/ordenes.routes'));
         this.app.use(this.productoPath, require('../routes/productos.routes'));
        this.app.use(this.uploadProductoPath, require('../routes/uploads.routes'));
+       this.app.use(this.checkoutPath, require('../routes/pagos.routes'));
 
 
 

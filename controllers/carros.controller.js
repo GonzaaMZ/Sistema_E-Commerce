@@ -8,15 +8,13 @@ const añadirProducto = async (req, res = response) => {
   const {id} = req.params;
   const {idProducto, cantidad} = req.body;
 
-  let carro = await Carro.findOne({idUsuario: id});
+  let carro = await Carro.findOne({idUsuario: id}).populate('productos', 'nombre');
 
-  const producto = await Producto.findOne({_id: idProducto})
+  const producto = await Producto.findById(idProducto)
 
 
   let productoFind;
  if (carro) {productoFind =  carro.productos.find((item) => item.producto == idProducto)} 
-
- console.log('ProductoFind: ',productoFind);
 
   try {
 
@@ -68,13 +66,13 @@ const añadirProducto = async (req, res = response) => {
 const eliminarProducto = async (req, res = response) => {
 
   const {id} = req.params;
-  const {producto} = req.body;
+  const {idProducto} = req.body;
 
   try {
     let carro = await Carro.findOne({idUsuario: id});
   
     let productoFind;
-    if (carro) {productoFind =  carro.productos.find((item) => item.producto == producto)} 
+    if (carro) {productoFind =  carro.productos.find((item) => item.producto == idProducto)} 
   
     console.log(productoFind);
   

@@ -11,7 +11,7 @@ const generarOrden = async (req, res = response) => {
     const {id, ...data} = req.body;
 
     try {
-        const carro = await Carro.findOne({idUsuario: id});
+        const carro = await Carro.findOne({idUsuario: id}).populate({path: 'productos', select: ['nombre', 'precio']});
         
             direccion = {
                 calle: data.calle,
